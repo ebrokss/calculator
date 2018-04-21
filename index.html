@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    
+</head>
+<body>
+    <div>
+    <div id="output">
+        <!-- <input type="text" id="text" readonly size="15px"> -->
+    </div>
+        <div id="myCalcu">
+            <button id="clear" class="button">C</button>
+            <button id="viewer" class="button">%</button><br>
+          
+            <button class="button" data-num="7">7</button>
+            <button class="button" data-num="8">8</button>
+            <button class="button" data-num="9">9</button>
+            <button data-ops="plus" class="button">+</button><br>
+          
+            <button class="button" data-num="4">4</button>
+            <button class="button" data-num="5">5</button>
+            <button class="button" data-num="6">6</button>
+            <button data-ops="minus" class="button">-</button><br>
+          
+            <button class="button" data-num="1">1</button>
+            <button class="button" data-num="2">2</button>
+            <button class="button" data-num="3">3</button>
+            <button data-ops="times" class="button">*</button><br>
+          
+            <button class="button" data-num="0">0</button>
+            <button class="button" data-num=".">.</button>
+            <button id="equals" class="button" data-result="">=</button>
+            <button data-ops="divided by" class="button">/</button>
+        </div>
+        </div>
+    <script>
+            var mybtn = document.getElementsByClassName("button");
+        var myOutput = document.getElementById("output");
+        var myCal = '';
+        var myCom = false;
+        var mySwitch = false;
+        var myOpe = ["+", "-", "*", "/",];
+        //console.log(mybtn);
+        for (var i = 0; i < mybtn.length; i++) {
+            mybtn[i].addEventListener("click", function () {
+                var myValue = this.innerHTML;
+                if (myCom || myCal == "0") {
+                    myCom = false;
+                    myCal = '';
+                }
+                if (myValue == "+" || myValue == "-" || myValue == "*" || myValue == "/") {
+                    if (mySwitch) {
+                        mySwitch = false;
+                        if (myOpe.indexOf(myOutput.innerHTML.slice(-1)) > -1) {
+                            myCal = myCal.substring(0, myCal.length - 1);
+                        } else {
+                            myCal = eval(myCal);
+                        }
+                    }
+                    mySwitch = true;
+                }
+                if (myValue == "=") {
+                    myValue = '';
+                    if (myOpe.indexOf(myOutput.innerHTML.slice(-1)) == -1) {
+                        myCal = eval(myCal);
+                    }
+                } else if (myValue == "C") {
+                    myCal = 0;
+                    myCom = true;
+                } else if (myOutput.innerHTML.indexOf(".") > -1 && myValue == ".") {
+                    myValue = '';
+                } else {
+                    myCal = myCal + myValue;
+                }
+                myOutput.innerHTML = myCal;
+            });
+        }
+    </script>
+
+</body>
+</html>

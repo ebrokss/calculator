@@ -1,0 +1,29 @@
+
+#output {
+    height: 45px;
+    width: 11px;
+    background-color: black;
+    color: aqua;
+    width: 100%;
+    font-size: 2em;
+    text-align: right;
+    display: inline-block;
+    overflow: hidden;
+}
+#myCalcu {
+    width: 200px;
+    background-color: dimgray;
+    height: 250px;
+    font-size: 25px;
+}
+#output {
+    border: solid 1px black;
+    width: 200px;
+}
+
+.button{
+    max-width: 100%;
+    margin: 5px;
+    font-size: 20px;
+    width: 35px;
+}
